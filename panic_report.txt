@@ -1,0 +1,76 @@
+panic(cpu 0 caller 0xffffff801ebd07e3): Kernel trap at 0xffffff8020ae5604, type 13=general protection, registers:
+CR0: 0x000000008001003b, CR2: 0x000000010facb000, CR3: 0x000000002d346000, CR4: 0x00000000000406e0
+RAX: 0xaf54010004060008, RBX: 0xffffffc11a275000, RCX: 0xaaaaaaaaaaaaaaaa, RDX: 0x0000000000000001
+RSP: 0xffffffcb8d01bc00, RBP: 0xffffffcb8d01bcb0, RSI: 0x0000000000000000, RDI: 0xffffff95469db000
+R8:  0x0000000000000000, R9:  0x0000000000000001, R10: 0xffffffcb8d01bc40, R11: 0x0000000000000000
+R12: 0xffffff907a333000, R13: 0xffffffc11a281b50, R14: 0xffffff907ac41000, R15: 0xffffffcb8d01bc60
+RFL: 0x0000000000010282, RIP: 0xffffff8020ae5604, CS:  0x0000000000000008, SS:  0x0000000000000010
+Fault CR2: 0x000000010facb000, Error code: 0x0000000000000000, Fault CPU: 0x0, PL: 0, VF: 0
+
+Panicked task 0xffffff907b003670: 228 threads: pid 0: kernel_task
+Backtrace (CPU 0), panicked thread: 0xffffff86e75d9000, Frame : Return Address
+0xffffff801e90c170 : 0xffffff801ea7fd6d mach_kernel : _handle_debugger_trap + 0x41d
+0xffffff801e90c1c0 : 0xffffff801ebe1086 mach_kernel : _kdp_i386_trap + 0x116
+0xffffff801e90c200 : 0xffffff801ebd03f3 mach_kernel : _kernel_trap + 0x4d3
+0xffffff801e90c250 : 0xffffff801ea1fa70 mach_kernel : _return_from_trap + 0xe0
+0xffffff801e90c270 : 0xffffff801ea8013d mach_kernel : _DebuggerTrapWithState + 0xad
+0xffffff801e90c390 : 0xffffff801ea7f8f6 mach_kernel : _panic_trap_to_debugger + 0x2b6
+0xffffff801e90c3f0 : 0xffffff801f314e03 mach_kernel : _panic + 0x84
+0xffffff801e90c4e0 : 0xffffff801ebd07e3 mach_kernel : _sync_iss_to_iks + 0x2c3
+0xffffff801e90c660 : 0xffffff801ebd04c6 mach_kernel : _kernel_trap + 0x5a6
+0xffffff801e90c6b0 : 0xffffff801ea1fa70 mach_kernel : _return_from_trap + 0xe0
+0xffffff801e90c6d0 : 0xffffff8020ae5604 com.apple.driver.AirPort.BrcmNIC : _wlc_tx_status_health_check + 0x13d
+0xffffffcb8d01bcb0 : 0xffffff8020aeb76d com.apple.driver.AirPort.BrcmNIC : _wlc_watchdog + 0x18a7
+0xffffffcb8d01bd90 : 0xffffff8020ab3e07 com.apple.driver.AirPort.BrcmNIC : _wlc_watchdog_timer + 0xe
+0xffffffcb8d01bdb0 : 0xffffff80209fa3ba com.apple.driver.AirPort.BrcmNIC : __ZL17wl_timer_callbackP8OSObjectP18IOTimerEventSource + 0x80
+0xffffffcb8d01bdd0 : 0xffffff801f24a125 mach_kernel : __ZN18IOTimerEventSource15timeoutSignaledEPvS0_ + 0xa5
+0xffffffcb8d01be40 : 0xffffff801f24a028 mach_kernel : __ZN18IOTimerEventSource17timeoutAndReleaseEPvS0_ + 0xc8
+0xffffffcb8d01be70 : 0xffffff801ead2655 mach_kernel : _thread_call_delayed_timer + 0x505
+0xffffffcb8d01bee0 : 0xffffff801ead3722 mach_kernel : _thread_call_delayed_timer + 0x15d2
+0xffffffcb8d01bfa0 : 0xffffff801ea1f19e mach_kernel : _call_continuation + 0x2e
+      Kernel Extensions in backtrace:
+         com.apple.driver.AirPort.BrcmNIC(1400.1.1)[D14D6E2F-38BD-3B86-A8E5-8892FA7A1487]@0xffffff802099c000->0xffffff8020ef5fff
+            dependency: com.apple.driver.corecapture(1.0.4)[7AEE3EFA-4B01-3F3E-A207-1AD9D12CEF01]@0xffffff8021e99000->0xffffff8021eb2fff
+            dependency: com.apple.driver.mDNSOffloadUserClient(1.0.1b8)[00409243-80A9-3F86-AD1A-6FC850D36622]@0xffffff802162e000->0xffffff8021632fff
+            dependency: com.apple.iokit.IO80211FamilyLegacy(1200.12.2b1)[88C9D031-8BAC-33FE-BD65-FEDC81C098FD]@0xffffff802083b000->0xffffff8020980fff
+            dependency: com.apple.iokit.IONetworkingFamily(3.4)[F50872A3-11A6-3A15-B7DE-66D214D9F0C4]@0xffffff8021397000->0xffffff80213adfff
+            dependency: com.apple.iokit.IOPCIFamily(2.9)[22B97C0A-53BF-3843-B4B5-4DE866C375B0]@0xffffff8021635000->0xffffff8021661fff
+            dependency: com.apple.iokit.IOSkywalkFamily(1.0)[BB942A4B-C1EE-38C5-ABDC-D2A8741D2659]@0xffffff8021715000->0xffffff802175dfff
+
+Process name corresponding to current thread (0xffffff86e75d9000): kernel_task
+Boot args: -v debug=0x100 keepsyms=1 alcid=1 agdpmod=pikera chunklist-security-epoch=0 -chunklist-no-rev2-dev chunklist-security-epoch=0 -chunklist-no-rev2-dev
+
+Mac OS version:
+21G83
+
+Kernel version:
+Darwin Kernel Version 21.6.0: Wed Aug 10 14:25:27 PDT 2022; root:xnu-8020.141.5~2/RELEASE_X86_64
+Kernel UUID: D0DC2052-71F4-3DCB-B189-BEE5A59B3B42
+KernelCache slide: 0x000000001e800000
+KernelCache base:  0xffffff801ea00000
+Kernel slide:      0x000000001e810000
+Kernel text base:  0xffffff801ea10000
+__HIB  text base: 0xffffff801e900000
+System model name: MacPro7,1 (Mac-27AD2F918AE68F61)
+System shutdown begun: NO
+Panic diags file available: NO (0xe00002bc)
+Hibernation exit count: 0
+
+System uptime in nanoseconds: 27342382289
+Last Sleep:           absolute           base_tsc          base_nano
+  Uptime  : 0x000000065dbba77b
+  Sleep   : 0x0000000000000000 0x0000000000000000 0x0000000000000000
+  Wake    : 0x0000000000000000 0x0000003600972271 0x0000000000000000
+Compressor Info: 0% of compressed pages limit (OK) and 0% of segments limit (OK) with 0 swapfiles and OK swap space
+Zone info:
+  Zone map: 0xffffff8078ee1000 - 0xffffffa078ee1000
+  . PGZ   : 0xffffff8078ee1000 - 0xffffff807cee2000
+  . VM    : 0xffffff807cee2000 - 0xffffff8549215000
+  . RO    : 0xffffff8549215000 - 0xffffff86e287b000
+  . GEN0  : 0xffffff86e287b000 - 0xffffff8baebae000
+  . GEN1  : 0xffffff8baebae000 - 0xffffff907aee1000
+  . GEN2  : 0xffffff907aee1000 - 0xffffff9547214000
+  . GEN3  : 0xffffff9547214000 - 0xffffff9a13547000
+  . DATA  : 0xffffff9a13547000 - 0xffffffa078ee1000
+  Metadata: 0xffffff804ced1000 - 0xffffff806ced1000
+  Bitmaps : 0xffffff806ced1000 - 0xffffff8078ed1000
